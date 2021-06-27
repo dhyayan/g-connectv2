@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "g-connect",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

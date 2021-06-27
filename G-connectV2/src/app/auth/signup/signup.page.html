@@ -1,0 +1,77 @@
+<div *ngIf="error" class="alert">{{ error }}
+  <a class="closebtn" (click)="removeErr()">&times;</a>
+</div>
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons>
+          <ion-back-button>
+          </ion-back-button>
+      </ion-buttons>
+      <ion-title>Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="signupForm">
+      <ion-item>
+          <ion-label type="text">Name:</ion-label><br>
+          <ion-input placeholder="Enter name" formControlName="name"></ion-input>
+      </ion-item><br>
+      <ion-item>
+          <ion-label>Rollno.:</ion-label><br>
+          <ion-input type="text" placeholder="Enter roll number" formControlName="rollno"></ion-input>
+      </ion-item><br>
+      <ion-list>
+          <ion-radio-group formControlName="role">
+              <ion-list-header>
+                  <ion-label>
+                      <h1> You are:</h1>
+                  </ion-label>
+              </ion-list-header>
+
+              <ion-item>
+                  <ion-label>Alumni</ion-label>
+                  <ion-radio value="Alumni"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Student</ion-label>
+                  <ion-radio value="Student"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label>Teacher</ion-label>
+                  <ion-radio value="Teacher"></ion-radio>
+              </ion-item>
+          </ion-radio-group>
+      </ion-list><br>
+      <ion-item>
+          <ion-label>Department:</ion-label>
+          <ion-select placeholder="Select Department" formControlName="dept" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="Computer Science Engineering">Computer Science Engineering</ion-select-option>
+              <ion-select-option value="Mechanical Engineering">Mechanical Engineering</ion-select-option>
+              <ion-select-option value="Civil Engineering">Civil Engineering</ion-select-option>
+              <ion-select-option value="Chemical Engineering">Chemical Engineering</ion-select-option>
+              <ion-select-option value="Electronics & Communication Engineering">Electronics & Communication Engineering</ion-select-option>
+              <ion-select-option value="Electrical & Electronics Engineering">Electrical & Electronics Engineering</ion-select-option>
+          </ion-select>
+      </ion-item><br>
+      <ion-item>
+          <ion-label>Email:</ion-label><br>
+          <ion-input type="email" placeholder="Enter Email" formControlName="email"></ion-input>
+      </ion-item><br>
+      <ion-item>
+          <ion-label>Password:</ion-label><br>
+          <ion-input type="password" formControlName="password" placeholder="Enter password" minlength="6"></ion-input>
+      </ion-item><br>
+      <ion-row>
+          <ion-col>
+              <ion-button expand="block" color="success" (click)="onSignUp()" fill="outline">Signup</ion-button>
+              <ion-button expand="block" color="primary" (click)="onHome()" fill="outline">Back</ion-button>
+          </ion-col>
+      </ion-row>
+      <br>
+
+  </form>
+</ion-content>

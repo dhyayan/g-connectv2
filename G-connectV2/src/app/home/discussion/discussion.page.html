@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title text-align="center">Discussion Forum </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+      Want to ask a new question ?
+      <ion-button shape="round" type="submit" color="success" (click)="goToNewDiscussion()" fill="clear" size="large">
+          <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+  </ion-item><br><br>
+  <ion-item>
+      <p style="text-align: center; font-size: medium;"> Exsting Discussion Threads </p>
+  </ion-item>
+  <ion-item *ngFor="let question of questions ; ">
+      <a [routerLink]="['showdiscussion',question.id]"> {{ question.content }}</a>
+
+  </ion-item>
+  <ion-button expand="block" fill="outline" routerLink="/home">Back</ion-button>
+
+</ion-content>

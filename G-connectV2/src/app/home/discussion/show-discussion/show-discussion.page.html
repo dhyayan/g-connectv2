@@ -1,0 +1,59 @@
+<ion-content>
+  <ion-card>
+
+      <ion-card-content>
+          <ion-grid>
+              <ion-row>
+                  <ion-col>
+                      <ion-text color="secondary">
+                          <h2> {{ this.currentQuestion.username| uppercase }}</h2>
+
+                      </ion-text>
+                  </ion-col>
+                  <ion-col>
+                      <ion-text>
+                          {{ this.currentQuestion.date.toDate() | date:'medium'  }}
+                      </ion-text>
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+
+
+
+
+
+
+
+          <p style="text-align: center; font-size: large;">{{ this.currentQuestion.content }} </p>
+
+      </ion-card-content>
+      <form [formGroup]="myform">
+          <ion-card-content>
+              <p style="text-align: right;">
+                  <ion-button *ngIf="!answer" size="small" type="button" color="success" (click)="createTextArea()">Answer</ion-button>
+              </p>
+              <ion-textarea *ngIf="answer" formControlName="newanswer"  >
+              </ion-textarea>
+              <p style="text-align: right;">
+                  <ion-button *ngIf="answer" size="small" type="button" color="success" (click)="addAnswer()">Submit</ion-button>
+                  <ion-button *ngIf="answer" size="small" type="button" color="danger" (click)="clear()">Cancel</ion-button>
+              </p>
+          </ion-card-content>
+      </form>
+  </ion-card>
+  <ion-card>
+      <ion-card-content *ngFor="let answer of  this.answers; let i=index">
+          <ion-item>
+              <ion-text color="danger">
+                  {{ answer.username | uppercase}}
+              </ion-text>
+          </ion-item>
+          <ion-item>
+              {{ answer.content }}
+
+          </ion-item>
+          <p style="text-align: right;"> {{ answer.date.toDate() | date:'medium'}}</p>
+      </ion-card-content>
+  </ion-card>
+  <ion-button expand="block" fill="outline" color="secondary" (click)="goBack()">Back</ion-button>
+</ion-content>

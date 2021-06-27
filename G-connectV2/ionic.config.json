@@ -1,0 +1,7 @@
+{
+  "name": "g-connect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

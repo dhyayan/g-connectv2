@@ -1,0 +1,33 @@
+<div class="alert" *ngIf="error">
+  {{ error }}
+  <span class="closebtn" (click)="removeError()">&times;</span>
+</div>
+
+
+<ion-content>
+  <div id="container">
+
+      <ion-card>
+          <ion-card-header>
+              <ion-title>Login</ion-title>
+          </ion-card-header>
+          <ion-card-content>
+              <div *ngIf="isLoading">
+                  <!-- <app-loading-spinner></app-loading-spinner> -->
+              </div>
+              <form [formGroup]="loginForm">
+                  <ion-item>
+                      <ion-label>Email:</ion-label>
+                      <ion-input type="email" formControlName="email" placeholder="Enter email"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label>Password:</ion-label>
+                      <ion-input type="password" formControlName="password" placeholder="Enter password" minlength="6"></ion-input>
+                  </ion-item>
+                  <ion-button expand="block" (click)="onLogin()">Login</ion-button>
+              </form>
+              Dont have an account? <a routerLink="../signup">Signup</a>
+          </ion-card-content>
+      </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-header>Disscussion</ion-header>
+  <ion-card>
+
+      <ion-card-content>
+          <ion-label>Question</ion-label>
+          <ion-input [(ngModel)]="question"> </ion-input>
+          <ion-button color="success" type="button" (click)="createDiscussion()" fill="outline">Submit</ion-button>
+
+      </ion-card-content>
+
+
+  </ion-card>
+  <ion-button expand="block" fill="outline" color="secondary" (click)="goBack()">Back</ion-button>
+
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header>
+  <h2 style="text-align: center;">Posts</h2>
+  <ion-textarea placeholder="Whats on your mind?" [(ngModel)]="content"></ion-textarea>
+  <ion-button fill="clear" style="text-align: right;" (click)="onPost()">Post</ion-button>
+</ion-header>
+<ion-content>
+  <div *ngFor="let post of posts ">
+      <ion-card>
+          <ion-card-header>
+              <h4>{{post.username}}</h4> {{post.date.toDate() | date:'medium'}}
+          </ion-card-header>
+          <ion-card-content>
+              {{post.content}}
+          </ion-card-content>
+      </ion-card>
+  </div>
+</ion-content>
+
+<ion-button slot="end" expand="block" routerLink="../home">Back</ion-button>

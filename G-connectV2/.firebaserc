@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "g-connect-d23dd": {
+      "hosting": {
+        "app": [
+          "g-connect-d23dd"
+        ]
+      }
+    }
+  }
+}

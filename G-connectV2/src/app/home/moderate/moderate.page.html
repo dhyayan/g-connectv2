@@ -1,0 +1,35 @@
+<ion-list>
+  <ion-item-divider *ngIf="post">
+      <ion-label>
+          New Questions Posted
+      </ion-label>
+  </ion-item-divider>
+
+  <ion-item *ngFor="let post of posts; let i =index">
+      <ion-text>{{ post.content }}
+      </ion-text>
+      <ion-button class="align" (click)="onVerifyQ(post)" color="success" size="small">
+          <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" size="small">
+          <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+  </ion-item>
+
+  <ion-item-divider *ngIf="ans">
+      <ion-label>
+          New Answers
+      </ion-label>
+  </ion-item-divider>
+
+  <ion-item *ngFor="let ans of answers; let i =index">
+      <ion-text>{{ ans.content }} </ion-text>
+      <ion-button (click)="onVerifyA(ans)" color="success" size="small">
+          <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" size="small">
+          <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+      <ion-text> Question: {{ ans.question }} </ion-text>
+  </ion-item>
+</ion-list>
