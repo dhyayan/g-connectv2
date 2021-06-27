@@ -7,9 +7,9 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item>Profile</ion-item>
-        <ion-item>Moderate</ion-item>
-        <ion-item>Logout</ion-item>
+        <ion-item routerLink="/home/my-profile">Profile</ion-item>
+        <ion-item routerLink="home/moderate">Moderate</ion-item>
+        <ion-item ><ion-button (click)="onLogout()">LogOut</ion-button></ion-item>
 
       </ion-list>
     </ion-content>

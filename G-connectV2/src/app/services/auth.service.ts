@@ -114,7 +114,7 @@ export class AuthService {
           localStorage.removeItem('userDetail');
           this.user.next(null);
           this.loggedIn=false;
-              this.router.navigate(['login']);
+              this.router.navigate(['auth/login']);
         }
 private handleAuth(email: string,userId: string,token: string,expiresIn: number){
       const expirationDate= new Date( new Date().getTime() + expiresIn *1000);
