@@ -1,7 +1,24 @@
 .center {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    justify-content: left;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+ion-label {
+    font-size: smaller;
+    cursor: pointer;
+}
+
+ion-item {
+    margin-bottom: 14px;
+}
+
+ion-avatar {
+    height: 50px;
+    width: 50px;
+    margin: auto;
+    border: 1px solid #acacac;
+    border-radius: 50%;
 }

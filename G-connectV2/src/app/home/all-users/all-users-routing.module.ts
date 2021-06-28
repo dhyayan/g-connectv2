@@ -6,12 +6,15 @@ import { AllUsersPage } from './all-users.page';
 const routes: Routes = [
   {
     path: '',
-    component: AllUsersPage
+    component: AllUsersPage,
+    children:[
+      {
+        path: 'profile/:name',
+        loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+      },
+    ]
   },
-  {
-    path: 'profile/:name',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  }
+
 ];
 
 @NgModule({

@@ -16,7 +16,7 @@ show= false;
 cUser: RegUser;
 uploadCompletion$: Observable<number>;
   downloadUrl$: Observable<string>;
-  img='../../../assets/img/empty-profile.png';
+  img='../../../assets/empty-profile.png';
 constructor(private  storage: AngularFireStorage, private regS: RegUserService) { }
  ngOnInit() {
 this.cUser=this.regS.cUser;

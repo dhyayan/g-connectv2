@@ -1,18 +1,22 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="menu1">
-    <ion-header>
-      <ion-toolbar color="success">
-        <ion-title> Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item routerLink="/home/my-profile">Profile</ion-item>
-        <ion-item routerLink="home/moderate">Moderate</ion-item>
-        <ion-item ><ion-button (click)="onLogout()">LogOut</ion-button></ion-item>
+    <ion-menu side="start" menuId="first" contentId="menu1">
+        <ion-header>
+            <ion-toolbar color="success">
+                <ion-title> Menu</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <ion-list>
+                <ion-item routerLink="/home/my-profile">My Profile</ion-item>
+                <ion-item routerLink="home/moderate">Moderate</ion-item>
+                <ion-item>
+                    <ion-button fill="clear" (click)="onLogout()">
+                        <ion-text color="dark">LogOut</ion-text>
+                    </ion-button>
+                </ion-item>
 
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet id="menu1"></ion-router-outlet>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="menu1"></ion-router-outlet>
 </ion-app>
