@@ -1,63 +1,73 @@
 <ion-header>
-  <ion-toolbar>
+    <ion-toolbar>
 
-      <ion-segment>
-          <ion-grid>
-              <ion-row>
-                  <ion-col>
-                      <ion-segment-button (click)="onViewAll()">
-                          <ion-icon name="people-outline"></ion-icon>
-                          <ion-label>All User</ion-label>
-                      </ion-segment-button>
-                  </ion-col>
-                  <ion-col>
-                      <ion-segment-button (click)="onViewAlumni('Alumni')">
-                          <ion-icon name="school-outline"></ion-icon>
-                          <ion-label>Alumni</ion-label>
-                      </ion-segment-button>
-                  </ion-col>
+        <ion-segment>
+            <ion-grid>
+                <ion-row>
+                    <ion-col size="3">
+                        <ion-segment-button (click)="onViewAll()">
+                            <ion-icon name="people-outline"></ion-icon>
+                            <ion-label>All User</ion-label>
+                        </ion-segment-button>
+                    </ion-col>
+                    <ion-col size="3">
+                        <ion-segment-button (click)="onViewAlumni('Alumni')">
+                            <ion-icon name="school-outline"></ion-icon>
+                            <ion-label>Alumni</ion-label>
+                        </ion-segment-button>
+                    </ion-col>
 
-                  <ion-col>
-                      <ion-segment-button (click)="onViewTeacher('Teacher')">
-                          <ion-icon name="man-outline"></ion-icon>
-                          <ion-label>Teacher</ion-label>
-                      </ion-segment-button>
-                  </ion-col>
+                    <ion-col size="3">
+                        <ion-segment-button (click)="onViewTeacher('Teacher')">
+                            <ion-icon name="man-outline"></ion-icon>
+                            <ion-label>Teacher</ion-label>
+                        </ion-segment-button>
+                    </ion-col>
 
-                  <ion-col>
-                      <ion-segment-button (click)="onViewStudent('Student')">
-                          <ion-icon name="accessibility-outline"></ion-icon>
-                          <ion-label>Student</ion-label>
-                      </ion-segment-button>
-                  </ion-col>
-
-
-
-              </ion-row>
-
-          </ion-grid>
-
-      </ion-segment>
+                    <ion-col size="3">
+                        <ion-segment-button (click)="onViewStudent('Student')">
+                            <ion-icon name="accessibility-outline"></ion-icon>
+                            <ion-label>Student</ion-label>
+                        </ion-segment-button>
+                    </ion-col>
 
 
-  </ion-toolbar>
+
+                </ion-row>
+
+            </ion-grid>
+
+        </ion-segment>
+
+
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list class="center">
-      <!-- <div *ngIf="isLoading">
+    <ion-list class="center">
+        <!-- <div *ngIf="isLoading">
           <app-loading-spinner></app-loading-spinner>
       </div> -->
-      <div>
+        <div>
 
-          <ion-item *ngFor="let users of viewUser ; let i=index">
-              <ion-item [routerLink]="['profile',users.name]">{{i+1}}. {{users.name}}</ion-item>
-          </ion-item>
-      </div>
-  </ion-list>
+            <ion-item *ngFor="let users of viewUser ; let i=index">
+                <div class="container">
+                    <div class="overlay">
+                        <ion-avatar>
+                            <img *ngIf="users.uploadedImageUrl" [src]="users.uploadedImageUrl">
+                            <img *ngIf="!users.uploadedImageUrl" src="../../../assets/empty-profile.png">
+
+                        </ion-avatar>
+                    </div>
+
+                </div>
+                <ion-item [routerLink]="['profile',users.name]">{{users.name | titlecase}}</ion-item>
+            </ion-item>
+        </div>
+    </ion-list>
 </ion-content>
 
 <ion-segment>
-  <ion-segment-button>
-      <ion-label></ion-label>
-  </ion-segment-button><br>
+    <ion-segment-button>
+        <ion-label></ion-label>
+    </ion-segment-button><br>
 </ion-segment>
