@@ -40,7 +40,7 @@ pipe(map (snaps =>  {
 
   )
 );
-};
+}
 getUserByName(name: string): Observable<RegUser>{
   return this.db.collection('Users',ref => ref.where('name','==',name)).snapshotChanges().
   pipe(map (snaps =>  {
@@ -51,7 +51,7 @@ getUserByName(name: string): Observable<RegUser>{
 
     ),first()
   );
-  };
+  }
   getUserByRole(role: string): Observable<RegUser[]>{
     return this.db.collection('Users',ref => ref.where('role','==',role)).snapshotChanges().
     pipe(map (snaps =>  {
@@ -61,11 +61,25 @@ getUserByName(name: string): Observable<RegUser>{
     }
       )
     );
-    };
+    }
 
 
  updateUserDetail(id: string, changes: Partial<RegUser>): Observable<any>{
   return from(this.db.doc(`Users/${id}`).update(changes));
  }
+
+
+
+ getUserByRoll(roll: string): Observable<RegUser[]>{
+
+  return this.db.collection('College',ref => ref.where('roll','==',roll)).snapshotChanges().
+  pipe(map (snaps =>  {
+    const user= convertSnaps<RegUser>(snaps);
+
+    return user.slice();
+  }
+    )
+  );
+  }
 
 }
