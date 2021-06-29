@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
     <ion-toolbar>
 
         <ion-segment>
@@ -60,7 +60,7 @@
                     </div>
 
                 </div>
-                <ion-item [routerLink]="['profile',users.name]">{{users.name | titlecase}}</ion-item>
+                <ion-item class="ion-no-border" [routerLink]="['profile',users.name]">{{users.name | titlecase}}</ion-item>
             </ion-item>
         </div>
     </ion-list>

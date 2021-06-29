@@ -12,9 +12,7 @@ export class AppComponent implements OnInit{
   ngOnInit()
   {
     this.authS.autoLogIn();
-    if(this.authS.loggedIn){
-      this.router.navigate(['/home']);
-    }
+
   }
 
 onLogout(){

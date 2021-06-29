@@ -29,7 +29,10 @@ onSignUp(){
   this.regUserS.getUserByRoll(this.signupForm.value.rollno).subscribe(val =>{
     if (val.length===0){
      this.error='Sorry you are not registered to the college if you are a student alumni or teacher please contact the college ';
-      return;
+
+     this.signupForm.reset();
+     return;
+
     }else{
       this.authS.signUp(this.signupForm.value.email,this.signupForm.value.password).subscribe( resData => {
 

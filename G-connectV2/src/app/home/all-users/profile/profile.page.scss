@@ -1,71 +1,80 @@
 ion-content {
-  --ion-background-color: #3e6777;
+    --ion-background-color: #3b4752;
 }
 
 ion-header {
-  position: absolute;
-  --ion-background-color: #3e6777;
+    position: absolute;
+    --ion-background-color: #3b4752;
 }
 
 ion-toolbar {
-  --ion-background-color: #3e6777;
-  --opacity: 0;
+    --ion-background-color: #3b4752;
+    --opacity: 0;
 }
 
 ion-title {
-  text-align: center;
-  font-size: 20px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-style: normal;
-  font-weight: lighter;
-  color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    color: #fff;
+}
+
+ion-button {
+    color: #fff;
 }
 
 .container {
-  width: 100%;
-  height: 200px;
-  display: block;
-  background-color: #232641;
+    width: 100%;
+    height: 200px;
+    display: block;
+    background-color: #408f96;
 }
 
 .overlay {
-  position: relative;
-  text-align: center;
-  top: 60%;
+    position: relative;
+    text-align: center;
+    top: 60%;
 }
 
 ion-avatar {
-  height: 100px;
-  width: 100px;
-  margin: auto;
-  border: 4px solid #6e621a;
-  border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    border: 3px solid #585125;
+    border-radius: 50%;
 }
 
 ion-card {
-  margin-top: 20px;
-  --ion-background-color: transparent !important;
-  box-shadow: none;
-  text-align: center;
+    margin-top: 20px;
+    --ion-background-color: transparent !important;
+    box-shadow: none;
+    text-align: center;
+}
+
+ion-card-title {
+    color: #aaadb1;
 }
 
 ion-card-subtitle {
-  color: #999ca0;
+    color: #797f86;
 }
 
 ion-item {
-  --ion-item-background: #536c77;
-  text-align: center;
-  color: #c2c3c4;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 15px;
-  border-radius: 5px;
-  height: 35px;
-  --min-height: 35px
+    --ion-item-background: #6c777e;
+    text-align: center;
+    color: #cacdcf;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 5px;
+    height: 35px;
+    --min-height: 35px;
+    margin-bottom: 15px;
 }
 
 ion-label {
-  text-align: center;
+    text-align: center;
 }

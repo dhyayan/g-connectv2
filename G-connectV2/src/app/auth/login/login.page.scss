@@ -23,6 +23,23 @@ ion-input {
     margin-left: 10px;
 }
 
+ion-content {
+    --ion-background-color: #d2eef5;
+}
+
+ion-item {
+    margin-top: 15px;
+}
+
+ion-button {
+    margin-top: 35px;
+    height: 40px;
+    font-size: 18px;
+    text-transform: initial;
+    border-radius: 50px;
+    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05)
+}
+
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 .alert {
     text-align: center;
