@@ -1,5 +1,5 @@
 ion-content {
-    --ion-background-color: #e6b192;
+    --ion-background-color: #48701a;
 }
 
 ion-header {
@@ -31,19 +31,28 @@ ion-title {
 .overlay {
     position: relative;
     text-align: center;
-    top: 60%;
+    top: 70%;
 }
 
 ion-avatar {
-    height: 200px;
-    width: 200px;
+    height: 125px;
+    width: 125px;
     margin: auto;
-    border: 4px solid #6e621a;
-    --border-radius: 30%;
+    border: 3px solid #6e621a;
+    --border-radius: 40%;
+}
+
+ion-input {
+    color: transparent !important;
+}
+
+.avata {
+    text-align: center;
+    --ion-item-background: transparent !important;
 }
 
 ion-card {
-    margin-top: 20px;
+    margin-top: 70px;
     --ion-background-color: transparent !important;
     box-shadow: none;
     text-align: center;
