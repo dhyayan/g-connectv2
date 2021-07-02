@@ -8,7 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 
 import { convertSnaps } from './db-utils';
 import { RegUser } from '../models/reg-user.model';
-import { UserSignIn } from '../models/usersignin.model';
+
 
 
 @Injectable({providedIn:'root'})
@@ -26,23 +26,14 @@ allUsers: RegUser[];
        )
        );
      }
- onCreateUser(newUser: UserSignIn){
+ onCreateUser(newUser: unknown){
+
 this.db.collection('Users').add(newUser);
 }
 
 
 getUserByEmail(email: string): Observable<RegUser>{
-return this.db.collection('Users',ref => ref.where('email','==',email)).snapshotChanges().
-pipe(map (snaps =>  {
-  const user= convertSnaps<RegUser>(snaps);
- return user.length ===1? user[0]: undefined;
-}
-
-  )
-);
-}
-getUserByName(name: string): Observable<RegUser>{
-  return this.db.collection('Users',ref => ref.where('name','==',name)).snapshotChanges().
+  return this.db.collection('Users',ref => ref.where('email','==',email)).snapshotChanges().
   pipe(map (snaps =>  {
     const user= convertSnaps<RegUser>(snaps);
 
@@ -81,5 +72,11 @@ getUserByName(name: string): Observable<RegUser>{
     )
   );
   }
-
+filterUserByEmail(email: string ){
+  for (const user of this.allUsers){
+    if (user.email===email){
+return user;
+    }
+  }
+}
 }

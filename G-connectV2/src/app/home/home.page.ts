@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RegUser } from '../models/reg-user.model';
 import { AuthService } from '../services/auth.service';
 import { RegUserService } from '../services/reg-user.service';
@@ -8,37 +8,33 @@ import { RegUserService } from '../services/reg-user.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  loggedIn=false;
+  loggedIn = false;
   user: RegUser;
-
-
   constructor(private authS: AuthService, private regS: RegUserService) {
-     }
-
-
-  ionViewWillEnter(){
-
-    if (this.authS.currentUserEmail){
-      this.regS.getUserByEmail(this.authS.currentUserEmail)
-       .subscribe(user =>{
-         this.user=user;
-         this.regS.cUser=user;
-         this.authS.currentUser=user;
-         console.log(this.authS.loggedIn);
-         this.loggedIn=this.authS.loggedIn;
-       });
-      } else {
-        console.log('no logged in ');
+  }
+ngOnInit(){
+  this.authS.afAuth.user.subscribe(val =>
+    {
+      if(val){
+        this.authS.currentUserEmail=val.email;
+        this.regS.getUserByEmail(val.email)
+         .subscribe(user =>{
+           this.user=user;
+           this.regS.cUser=user;
+          console.log(user);
+           this.loggedIn=this.authS.loggedIn;
+         });
       }
-      console.log(this.user);
-  }
+
+    });
+    }
 
 
-  onLogOut(){
-    this.authS.logOut();
 
-  }
+
+
+
 
 }

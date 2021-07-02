@@ -16,6 +16,6 @@ import { ShowDiscussionPage } from './show-discussion.page';
     ShowDiscussionPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [ShowDiscussionPage]
+  declarations: []
 })
 export class ShowDiscussionPageModule {}

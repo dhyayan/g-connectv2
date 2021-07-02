@@ -9,7 +9,7 @@ const routes: Routes = [
     component: AllUsersPage,
   },
       {
-        path: 'profile/:name',
+        path: 'profile/:email',
         loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
       },
 

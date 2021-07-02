@@ -26,36 +26,15 @@ export class SignupPage implements OnInit {
   ngOnInit() {}
 onSignUp(){
 
-  this.regUserS.getUserByRoll(this.signupForm.value.rollno).subscribe(val =>{
-    if (val.length===0){
-     this.error='Sorry you are not registered to the college if you are a student alumni or teacher please contact the college ';
-
-     this.signupForm.reset();
-     return;
-
-    }else{
-      this.authS.signUp(this.signupForm.value.email,this.signupForm.value.password).subscribe( resData => {
-
-        this.router.navigate(['/home']);
-
-      },
-      errorMes => {
-        this.error= errorMes;
-      return ;
-      }
-
-      );
+      this.authS.signUp(this.signupForm.value.email,this.signupForm.value.password).catch(error => this.error=error);
+      this.signupForm.reset();
       this.signupForm.removeControl('password');
       this.regUserS.onCreateUser(this.signupForm.value);
-      console.log(this.signupForm.value);
 
-      this.signupForm.reset();
     }
-  });
 
 
 
-}
 
 onHome(){
   this.router.navigate(['/home']);
@@ -66,3 +45,6 @@ removeErr(){
 
 
 }
+
+
+

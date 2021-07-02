@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { PERSISTENCE } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { environment } from 'src/environments/environment';
      AppRoutingModule, HttpClientModule,
        AngularFireModule.initializeApp(environment.firebase)
       ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: PERSISTENCE, useValue: 'session' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

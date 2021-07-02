@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -21,7 +21,7 @@ import { CreateDiscussionPage } from './create-discussion/create-discussion.page
     DiscussionPageRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-
+    ReactiveFormsModule
   ],
   declarations: [DiscussionPage,ShowDiscussionPage,CreateDiscussionPage]
 })

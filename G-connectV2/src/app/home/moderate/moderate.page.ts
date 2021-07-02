@@ -50,4 +50,10 @@ onVerifyA(answer: Format ){
   console.log(answer.id);
   this.moderateS.onDeleteAnswer(answer.id);
 }
+onDeleteQ(id: string){
+  this.moderateS.onDeleteQuestion(id);
+}
+onDeleteA(id: string){
+  this.moderateS.onDeleteAnswer(id);
+}
 }

@@ -23,15 +23,18 @@ teacher= false;
    }
 
    ngOnInit(){
-    this.postS.loadAllPosts().subscribe( val =>{
-     this.posts=val;
-     this.cUser=this.regS.cUser;
-   });
-
 
  }
 
+ionViewDidEnter(){
+  this.postS.loadAllPosts().subscribe( val =>{
+    this.posts=val;
+    this.cUser=this.regS.cUser;
+    console.log(this.cUser);
+  });
 
+
+}
 onPost(){
   const newPost= new Post(this.content,this.cUser.name,new Date());
   this.postS.addPost(newPost);

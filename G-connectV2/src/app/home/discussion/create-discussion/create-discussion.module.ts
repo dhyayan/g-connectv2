@@ -15,6 +15,6 @@ import { CreateDiscussionPage } from './create-discussion.page';
     IonicModule,
     CreateDiscussionPageRoutingModule
   ],
-  declarations: [CreateDiscussionPage]
+  declarations: []
 })
 export class CreateDiscussionPageModule {}

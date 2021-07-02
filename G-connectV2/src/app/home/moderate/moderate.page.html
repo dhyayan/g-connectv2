@@ -11,7 +11,7 @@
       <ion-button class="align" (click)="onVerifyQ(post)" color="success" size="small">
           <ion-icon name="checkmark-outline"></ion-icon>
       </ion-button>
-      <ion-button color="danger" size="small">
+      <ion-button (click)="onDeleteQ(post.id)" color="danger" size="small">
           <ion-icon name="close-outline"></ion-icon>
       </ion-button>
   </ion-item>
@@ -27,7 +27,7 @@
       <ion-button (click)="onVerifyA(ans)" color="success" size="small">
           <ion-icon name="checkmark-outline"></ion-icon>
       </ion-button>
-      <ion-button color="danger" size="small">
+      <ion-button (click)="onDeleteA(ans.id)"color="danger" size="small">
           <ion-icon name="close-outline"></ion-icon>
       </ion-button>
       <ion-text> Question: {{ ans.question }} </ion-text>

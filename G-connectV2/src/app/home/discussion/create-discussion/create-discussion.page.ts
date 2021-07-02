@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Format } from 'src/app/models/Format.model';
 import { Forum } from 'src/app/models/forum.model';
 import { RegUser } from 'src/app/models/reg-user.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { ForumService } from 'src/app/services/forum.service';
+import { RegUserService } from 'src/app/services/reg-user.service';
 
 @Component({
   selector: 'app-create-discussion',
@@ -17,8 +17,8 @@ export class CreateDiscussionPage implements OnInit {
   user: RegUser;
 
 
-  constructor(private forumS: ForumService, private router: Router, private authS: AuthService) {
-      this.user=this.authS.currentUser;
+  constructor(private forumS: ForumService, private router: Router, private regS: RegUserService) {
+      this.user=this.regS.cUser;
    }
 
   ngOnInit() {}
@@ -27,13 +27,13 @@ export class CreateDiscussionPage implements OnInit {
   createDiscussion(){
 const forum=new Forum(new Format( this.question,this.user.name,new Date()));
     this.forumS.onCreateFourm(forum);
- this.router.navigate(['/forum']);
+ this.router.navigate(['home/discussion']);
   }
 
 
 
   goBack(){
-    this.router.navigate(['/forum']);
+    this.router.navigate(['/discussion']);
 }
 
 }

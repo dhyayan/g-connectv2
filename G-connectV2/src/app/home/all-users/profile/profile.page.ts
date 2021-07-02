@@ -14,27 +14,26 @@ export class ProfilePage implements OnInit {
 
   currentUser: Observable< RegUser>;
   cUser: RegUser;
-  name: string;
+  email: string;
   img='../../assets/empty-profile.png';
     constructor(private regS: RegUserService, private authS: AuthService, private route: ActivatedRoute) { }
 
 
 
     ngOnInit() {
-      this.name= this.route.snapshot.params.name;
-      console.log(this.name);
-      this.regS.getUserByName(this.name).subscribe(cUser =>{
-        this.cUser=cUser;
-        if(cUser.uploadedImageUrl){
-          this.img=cUser.uploadedImageUrl;
+      this.email= this.route.snapshot.params.email;
+      console.log(this.email);
+      this.cUser=this.regS.filterUserByEmail(this.email);
+        if(this.cUser.uploadedImageUrl){
+          this.img=this.cUser.uploadedImageUrl;
 
         }
 
-      });
+      }
 
 
 
       }
 
 
-}
+

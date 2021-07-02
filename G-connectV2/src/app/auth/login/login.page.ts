@@ -24,17 +24,9 @@ export class LoginPage implements OnInit {
 
 
 onLogin(){
-  this.isLoading=true;
-  this.authS.logIn(this.loginForm.value.email,this.loginForm.value.password).subscribe(resData =>{
-
-    this.isLoading=false;
-  this.authS.loggedIn=true;
-
-  this.router.navigate(['home']);
-},errorMes =>{
-  this.error=errorMes;
-
-});;
+this.authS.signIn(this.loginForm.value.email,this.loginForm.value.password).catch((error) => {
+  this.error=error;
+});
 this.loginForm.reset();
 }
 
@@ -43,3 +35,7 @@ removeError(){
 }
 
 }
+
+
+
+

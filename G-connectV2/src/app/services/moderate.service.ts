@@ -58,7 +58,8 @@ export class ModerateService {
 onDeleteAnswer( currentAnswerId: string){
 this.db.doc(`Answers/${currentAnswerId}`).delete();
 }
-onDeletePost(){
+onDeleteQuestion(id: string){
+  this.db.doc(`Threads/${id}`).delete();
 }
 
 }
