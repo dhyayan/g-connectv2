@@ -2,6 +2,10 @@
     <ion-toolbar>
         <ion-title>Profile</ion-title>
     </ion-toolbar>
+    <div class="alert" *ngIf="error">
+      {{ error }}
+      <span class="closebtn" (click)="removeError()">&times;</span>
+  </div>
 </ion-header>
 
 <ion-content>
@@ -30,6 +34,7 @@
             <ion-item>
                 <ion-icon name="mail"></ion-icon>
                 <ion-label>{{cUser.email}}</ion-label>
+
             </ion-item>
             <ion-item>
                 <ion-icon name="book-outline"></ion-icon>
@@ -39,7 +44,13 @@
                 <ion-icon name="id-card-outline"></ion-icon>
                 <ion-label>{{cUser.rollno}}</ion-label>
             </ion-item>
+            <ion-button (click)="showInput()">ChangeEmail</ion-button>
+            <div *ngIf="show">
+              <ion-input [(ngModel)]="newEmail" color="success"> </ion-input>
+              <ion-button (click)="changeEmail(newEmail)">confirm </ion-button>
+            </div>
         </ion-card-content>
+
     </ion-card>
 
 </ion-content>

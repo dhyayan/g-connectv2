@@ -8,6 +8,9 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit{
+  showInput=false;
+  error: string;
+  newPassword='';
   constructor(private authS: AuthService, private  router: Router) {}
   ngOnInit()
   {
@@ -21,8 +24,28 @@ export class AppComponent implements OnInit{
   }
  );
   }
+onShowInput(){
+  this.showInput=!this.showInput;
 
+}
+onChangePassword(newPassword: string){
+  console.log(newPassword);
+  this.authS.afAuth.user.subscribe(val =>{
+    val.updatePassword(newPassword).then(() =>{
+    this.error='Your password has been sucessfully changed ';
+    }).catch(error => {
+      this.error=error;
+      console.log(error);
+    }
+      );
+  });
+  newPassword='';
+  this.showInput=false;
+}
 onLogout(){
   this.authS.logOut();
+}
+removeError(){
+  this.error=null;
 }
 }

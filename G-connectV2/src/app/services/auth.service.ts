@@ -37,7 +37,7 @@ currentUserEmail: string ;
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         if (result.user.emailVerified !== true) {
-          this.sendVerificationMail();
+          // this.sendVerificationMail();
           window.alert('Please validate your email address. Kindly check your inbox.');
         } else {
           this.ngZone.run(() => {

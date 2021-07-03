@@ -11,13 +11,17 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { PERSISTENCE } from '@angular/fire/auth';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
      IonicModule.forRoot(),
-     AppRoutingModule, HttpClientModule,
+     AppRoutingModule,
+    FormsModule,
+     HttpClientModule,
        AngularFireModule.initializeApp(environment.firebase)
       ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -4,23 +4,24 @@ import { last, concatMap } from 'rxjs/operators';
 import { RegUser } from 'src/app/models/reg-user.model';
 import { RegUserService } from 'src/app/services/reg-user.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.page.html',
   styleUrls: ['./my-profile.page.scss'],
 })
 export class MyProfilePage implements OnInit {
-
-
+error: string;
+newEmail='';
 show= false;
 cUser: RegUser;
 uploadCompletion$: Observable<number>;
   downloadUrl$: Observable<string>;
   img='../../../assets/empty-profile.png';
-constructor(private  storage: AngularFireStorage, private regS: RegUserService) { }
+constructor(private  storage: AngularFireStorage, private regS: RegUserService, private authS: AuthService) { }
  ngOnInit() {
 this.cUser=this.regS.cUser;
-this.show=true;
+
 
 if(this.cUser.uploadedImageUrl){
   this.img=this.cUser.uploadedImageUrl;
@@ -47,4 +48,21 @@ if(this.cUser.uploadedImageUrl){
 
       }
 
+showInput(){
+  this.show=!this.show;
+}
+changeEmail(email: string){
+  this.authS.afAuth.user.subscribe(val =>{
+    val.updateEmail(email).then(() =>{
+    this.error='Your password has been sucessfully changed ';
+    }).catch(error => {
+      this.error=error;
+      console.log(error);
+    }
+      );
+  });
+}
+removeError(){
+  this.error=null;
+}
 }
