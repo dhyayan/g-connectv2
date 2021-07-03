@@ -5,6 +5,7 @@ import { RegUser } from 'src/app/models/reg-user.model';
 import { RegUserService } from 'src/app/services/reg-user.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from 'src/app/services/auth.service';
+import { Format } from 'src/app/models/Format.model';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.page.html',
@@ -54,14 +55,19 @@ showInput(){
 changeEmail(email: string){
   this.authS.afAuth.user.subscribe(val =>{
     val.updateEmail(email).then(() =>{
-    this.error='Your password has been sucessfully changed ';
+
+    this.error='Your email has been sucessfully changed ';
     }).catch(error => {
       this.error=error;
-      console.log(error);
+     return;
     }
       );
   });
+  this.show=!this.show;
+  this.regS.updateUserDetail(this.cUser.id,{email});
+  this.newEmail='';
 }
+
 removeError(){
   this.error=null;
 }

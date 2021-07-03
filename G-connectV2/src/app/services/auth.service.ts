@@ -2,13 +2,17 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-loggedIn = false;
+verified=false;
+error: string;
+  loggedIn = false;
+
 currentUserEmail: string ;
   constructor(
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -26,26 +30,26 @@ currentUserEmail: string ;
   }
 
 
-  signUp(email: string, password: string ) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.sendVerificationMail();
-      });
+  async signUp(email: string, password: string ) {
+    const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    this.sendVerificationMail();
   }
 
-  signIn(email, password) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        if (result.user.emailVerified !== true) {
-          // this.sendVerificationMail();
-          window.alert('Please validate your email address. Kindly check your inbox.');
-        } else {
-          this.ngZone.run(() => {
-            this.router.navigate(['home']);
-          });
-        }
+  async signIn(email: string, password: string){
+    const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+    if (result.user.emailVerified !== true) {
+      this.sendVerificationMail();
+      this.verified = false;
+      this.error='Please check your email and verify to login';
 
+      return;
+    }else {
+      this.ngZone.run(() => {
+        this.router.navigate(['home']);
       });
+    }
+    this.verified = true;
+
   }
 
 logOut(){

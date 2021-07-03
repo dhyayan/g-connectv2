@@ -31,13 +31,18 @@ export class ShowDiscussionPage implements OnInit {
 
 
     ngOnInit() {
-    this.currentForumId=this.route.snapshot.params.id;
+      this.currentForumId=this.route.snapshot.params.id;
 
    this.currentQuestion=this.forumS.getCurrentForum(this.currentForumId);
    this.name=this.regS.cUser.name;
    this.forumS.fetchAnswers(true,this.currentForumId).subscribe(val =>{
      this.answers=val;
    });
+    }
+    ionViewWillEnter(){
+      this.currentForumId=this.route.snapshot.params.id;
+      this.name=this.regS.cUser.name;
+
     }
 
   createTextArea(){
@@ -57,8 +62,5 @@ export class ShowDiscussionPage implements OnInit {
     this.answer=!this.answer;
   }
 
-  goBack(){
-    this.router.navigate(['/forum']);
-  }
 
 }

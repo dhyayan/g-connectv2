@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
 import { Format } from '../models/Format.model';
 
 

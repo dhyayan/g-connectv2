@@ -24,7 +24,13 @@ export class LoginPage implements OnInit {
 
 
 onLogin(){
-this.authS.signIn(this.loginForm.value.email,this.loginForm.value.password).catch((error) => {
+this.authS.signIn(this.loginForm.value.email,this.loginForm.value.password).then(()=>{
+  if (this.authS.error){
+    this.error=this.authS.error;
+  }
+})
+
+.catch((error) => {
   this.error=error;
 });
 this.loginForm.reset();

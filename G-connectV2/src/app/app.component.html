@@ -22,6 +22,13 @@
                 <ion-button (click)="onChangePassword(newPassword)">confirm</ion-button>
               </ion-item>
               </div>
+
+              <div class="alert" *ngIf="message">
+                {{ message }}
+                <span class="closebtn" (click)="removeError()">&times;</span>
+            </div>
+
+
                 <ion-item>
                     <ion-button fill="clear" (click)="onLogout()">
                         <ion-text color="dark">LogOut</ion-text>

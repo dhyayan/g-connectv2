@@ -1,7 +1,14 @@
 <ion-header class="ion-no-border">
-    <ion-toolbar>
+
+      <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
         <ion-title>Profile</ion-title>
     </ion-toolbar>
+
     <div class="alert" *ngIf="error">
       {{ error }}
       <span class="closebtn" (click)="removeError()">&times;</span>

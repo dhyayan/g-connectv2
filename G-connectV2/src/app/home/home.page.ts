@@ -8,28 +8,30 @@ import { RegUserService } from '../services/reg-user.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage  {
 
   loggedIn = false;
   user: RegUser;
   constructor(private authS: AuthService, private regS: RegUserService) {
   }
-ngOnInit(){
+ionViewWillEnter(){
   this.authS.afAuth.user.subscribe(val =>
     {
-      if(val){
+      if(val ){
         this.authS.currentUserEmail=val.email;
         this.regS.getUserByEmail(val.email)
          .subscribe(user =>{
            this.user=user;
            this.regS.cUser=user;
-          console.log(user);
+
            this.loggedIn=this.authS.loggedIn;
          });
       }
 
     });
-    }
+}
+
+
 
 
 

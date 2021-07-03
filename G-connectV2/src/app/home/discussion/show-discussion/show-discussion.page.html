@@ -1,3 +1,16 @@
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-back-button>
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-back-button>
+    </ion-buttons>
+    <ion-title>Discussion Forum  </ion-title>
+</ion-toolbar>
+
+</ion-header>
 <ion-content>
   <ion-card>
 
@@ -55,5 +68,4 @@
           <p style="text-align: right;"> {{ answer.date.toDate() | date:'medium'}}</p>
       </ion-card-content>
   </ion-card>
-  <ion-button expand="block" fill="outline" color="secondary" (click)="goBack()">Back</ion-button>
 </ion-content>

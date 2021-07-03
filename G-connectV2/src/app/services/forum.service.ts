@@ -76,8 +76,5 @@ return  this.db.doc(`Threads/${id}`).collection('Answers',ref => ref.where('isMo
 
     }
 
-onDeleteAnswer(currentFourm: number, currentAnswerId: number){
 
-
-}
 }

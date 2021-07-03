@@ -36,7 +36,7 @@ getUserByEmail(email: string): Observable<RegUser>{
   return this.db.collection('Users',ref => ref.where('email','==',email)).snapshotChanges().
   pipe(map (snaps =>  {
     const user= convertSnaps<RegUser>(snaps);
-
+this.cUser=user[0];
     return user.length ===1? user[0]: undefined;
   }
 

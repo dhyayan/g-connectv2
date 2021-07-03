@@ -32,8 +32,6 @@ const forum=new Forum(new Format( this.question,this.user.name,new Date()));
 
 
 
-  goBack(){
-    this.router.navigate(['/discussion']);
-}
+
 
 }
