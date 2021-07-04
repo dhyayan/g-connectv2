@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
 
-      <ion-toolbar>
+    <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button>
                 <ion-icon name="arrow-back"></ion-icon>
@@ -10,9 +10,9 @@
     </ion-toolbar>
 
     <div class="alert" *ngIf="error">
-      {{ error }}
-      <span class="closebtn" (click)="removeError()">&times;</span>
-  </div>
+        {{ error }}
+        <span class="closebtn" (click)="removeError()">&times;</span>
+    </div>
 </ion-header>
 
 <ion-content>
@@ -21,7 +21,7 @@
 
             <ion-avatar>
                 <img [src]="img">
-                <ion-input type="file" (change)="uploadFile($event)"></ion-input>
+                <ion-input class="file" accept="image/*" type="file" (change)="uploadFile($event)"></ion-input>
             </ion-avatar>
 
 
@@ -41,6 +41,8 @@
             <ion-item>
                 <ion-icon name="mail"></ion-icon>
                 <ion-label>{{cUser.email}}</ion-label>
+                <ion-button fill="clear" (click)="showInput()" color="dark">Change?</ion-button>
+
 
             </ion-item>
             <ion-item>
@@ -51,10 +53,16 @@
                 <ion-icon name="id-card-outline"></ion-icon>
                 <ion-label>{{cUser.rollno}}</ion-label>
             </ion-item>
-            <ion-button (click)="showInput()">ChangeEmail</ion-button>
             <div *ngIf="show">
-              <ion-input [(ngModel)]="newEmail" color="success"> </ion-input>
-              <ion-button (click)="changeEmail(newEmail)">confirm </ion-button>
+                <ion-item>
+                    <ion-icon name="swap-horizontal-outline"></ion-icon>
+
+                    <ion-input class="change" type="email" [(ngModel)]="newEmail" color="light" placeholder="New E-Mail"> </ion-input>
+                    <ion-button (click)="changeEmail(newEmail)" fill="clear" color="dark">confirm </ion-button>
+
+
+                </ion-item>
+
             </div>
         </ion-card-content>
 

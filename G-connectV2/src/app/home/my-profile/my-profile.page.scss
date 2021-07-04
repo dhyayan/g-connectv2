@@ -42,17 +42,17 @@ ion-avatar {
     --border-radius: 40%;
 }
 
-ion-input {
-    color: transparent !important;
-}
-
 .avata {
     text-align: center;
     --ion-item-background: transparent !important;
 }
 
+.file {
+    color: transparent !important;
+}
+
 ion-card {
-    margin-top: 70px;
+    margin-top: 100px;
     --ion-background-color: transparent !important;
     box-shadow: none;
     text-align: center;
@@ -78,4 +78,9 @@ ion-item {
 
 ion-label {
     text-align: center;
+}
+
+.change {
+    --placeholder-color: #c2c3c4;
+    --color: #c2c3c4;
 }
