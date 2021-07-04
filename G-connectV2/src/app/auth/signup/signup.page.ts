@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegUserService } from 'src/app/services/reg-user.service';
@@ -16,7 +16,7 @@ export class SignupPage implements OnInit {
     rollno: new FormControl(''),
     role: new FormControl(''),
     dept: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl('',[Validators.required,Validators.email,Validators.pattern('[a-zA-Z0-9]+@gvpce.ac.in')]),
     password: new FormControl('')
   });
   constructor(private authS: AuthService,
@@ -43,7 +43,7 @@ removeErr(){
   this.error= null;
 }
 
-
+get email(){return this.signupForm.get('email');}
 }
 
 
