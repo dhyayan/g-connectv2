@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RegUser } from './models/reg-user.model';
 import { AuthService } from './services/auth.service';
+import { RegUserService } from './services/reg-user.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,13 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit{
+
   showInput=false;
   message: string;
   newPassword='';
-  constructor(private authS: AuthService, private  router: Router) {}
+  user: RegUser;
+  loggedIn: boolean;
+  constructor(public authS: AuthService, private  router: Router, private regS: RegUserService) {}
   ngOnInit()
   {
 
@@ -19,10 +24,12 @@ export class AppComponent implements OnInit{
   {
     if (val && this.authS.verified){
       this.authS.loggedIn=true;
+
       this.router.navigate(['home']);
     }
   }
  );
+
   }
 onShowInput(){
   this.showInput=!this.showInput;

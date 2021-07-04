@@ -9,7 +9,6 @@ import { RegUserService } from '../services/reg-user.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage  {
-
   loggedIn = false;
   user: RegUser;
   constructor(private authS: AuthService, private regS: RegUserService) {
@@ -23,19 +22,29 @@ ionViewWillEnter(){
          .subscribe(user =>{
            this.user=user;
            this.regS.cUser=user;
-
+           if (user.role==='Moderator'){
+             this.authS.acess=true;
+           }
            this.loggedIn=this.authS.loggedIn;
          });
       }
 
     });
+
+
+
+  }
+
+
+
+
+checkAcess(){
+  console.log('clicked');
+  if (this.user.role==='Moderator'){
+    console.log('it is moderator');
+    this.authS.acess=true;
+  }
 }
-
-
-
-
-
-
 
 
 
