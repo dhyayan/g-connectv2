@@ -9,8 +9,8 @@
         </ion-header>
         <ion-content>
             <ion-list>
-                <ion-item routerLink="/home/my-profile">My Profile</ion-item>
-                <ion-item routerLink="home/moderate">Moderate</ion-item>
+                <ion-item routerLink="/home/my-profile"*ngIf="!this.authS.acess">My Profile</ion-item>
+                <ion-item routerLink="home/moderate" *ngIf="this.authS.acess">Moderate</ion-item>
                 <ion-item>
                   <ion-button (click)="onShowInput()">Change Password </ion-button>
                 </ion-item>

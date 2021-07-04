@@ -42,25 +42,6 @@
                             </ion-item>
                         </ion-col>
 
-                        <!-- <ion-label>
-                        <h2><strong> You are:</strong></h2>
-                    </ion-label>
-
-
-                    <ion-item>
-                        <ion-label>Alumni</ion-label>
-                        <ion-radio class="radio radio-inline radio-blue" value="Alumni"></ion-radio>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label>Student</ion-label>
-                        <ion-radio class="radio radio-inline radio-blue" value="Student"></ion-radio>
-                    </ion-item>
-
-                    <ion-item>
-                        <ion-label>Teacher</ion-label>
-                        <ion-radio class="radio radio-inline radio-blue" value="Teacher"></ion-radio>
-                    </ion-item> -->
 
 
 
@@ -81,8 +62,9 @@
             </ion-select>
         </ion-item><br>
         <ion-item>
-            <ion-input type="email" placeholder="E-Mail" formControlName="email" required email></ion-input>
-        </ion-item><br>
+            <ion-input type="email" placeholder="Domain mail" formControlName="email" required email></ion-input>
+
+        </ion-item> <span class="alert" *ngIf="email.touched && email.invalid">Enter domail mail </span><br>
         <ion-item>
             <ion-input type="password" formControlName="password" placeholder="Password" minlength="6" required></ion-input>
         </ion-item><br>

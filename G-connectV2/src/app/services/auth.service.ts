@@ -2,7 +2,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ import { throwError } from 'rxjs';
 
 export class AuthService {
 verified=false;
+acess=false;
 error: string;
   loggedIn = false;
 
