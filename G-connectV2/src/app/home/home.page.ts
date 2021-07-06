@@ -9,8 +9,13 @@ import { RegUserService } from '../services/reg-user.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage  {
-  loggedIn = false;
+  showInput=false;
+  message: string;
+  newPassword='';
   user: RegUser;
+acess=false;
+  loggedIn = false;
+
   constructor(private authS: AuthService, private regS: RegUserService) {
   }
 ionViewWillEnter(){
@@ -23,7 +28,7 @@ ionViewWillEnter(){
            this.user=user;
            this.regS.cUser=user;
            if (user.role==='Moderator'){
-             this.authS.acess=true;
+             this.acess=true;
            }
            this.loggedIn=this.authS.loggedIn;
          });
@@ -38,14 +43,35 @@ ionViewWillEnter(){
 
 
 
-checkAcess(){
-  console.log('clicked');
-  if (this.user.role==='Moderator'){
-    console.log('it is moderator');
-    this.authS.acess=true;
-  }
-}
 
+
+
+
+
+onShowInput(){
+  this.showInput=!this.showInput;
+
+}
+onChangePassword(newPassword: string){
+  console.log(newPassword);
+  this.authS.afAuth.user.subscribe(val =>{
+    val.updatePassword(newPassword).then(() =>{
+    this.message='Your password has been sucessfully changed ';
+    }).catch(error => {
+      this.message=error;
+      console.log(error);
+    }
+      );
+  });
+  newPassword='';
+  this.showInput=false;
+}
+onLogout(){
+  this.authS.logOut();
+}
+removeError(){
+  this.message=null;
+}
 
 
 }

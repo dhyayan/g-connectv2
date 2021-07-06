@@ -27,14 +27,3 @@ return this.authS.afAuth.authState.pipe(map(val =>{
 }
 
 
-//   return this.authS.user.pipe(take(1),
-//   map(user =>{
-//  const isAuth = !!user;
-// if (isAuth){
-//  return true;
-// }
-// return  this.router.createUrlTree(['']);
-// })
-
-// );
-// }

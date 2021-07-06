@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable @typescript-eslint/semi */
-import { Observable, Subject } from 'rxjs';
+import { from, Observable, Subject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
@@ -8,9 +8,11 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { map } from 'rxjs/operators';
 import { convertSnaps } from './db-utils';
 import { Post } from '../models/post.model';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({providedIn:'root'})
 export class PostService{
+
 
   constructor(private db: AngularFirestore ){
 
@@ -33,10 +35,14 @@ console.log(newPost);
 
     {content:newPost.content,
     date:newPost.date,
-    username:newPost.username}
+    username:newPost.username,
+    uploadedPost: newPost.uploadedPost}
     );
-}
 
+}
+addFile(id: string, changes: Partial<Post>){
+  return from(this.db.doc(`Posts/${id}`).update(changes));
+}
 
 
 

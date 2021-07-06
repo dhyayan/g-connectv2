@@ -1,4 +1,5 @@
-import { map } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { map, last, concatMap } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +8,7 @@ import { RegUser } from 'src/app/models/reg-user.model';
 import { PostService } from 'src/app/services/post.service';
 import { RegUserService } from 'src/app/services/reg-user.service';
 import { Pipe, PipeTransform } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -19,36 +21,61 @@ export class PostPage implements OnInit {
   cUser: RegUser;
  posts: Post[];
 teacher= false;
+uploadedFile: Post;
 date= new Date();
+postUrl: string;
+downloadPost$: Observable<string>;
+newPost: Post;
+file='';
 
 
-  constructor(private router: Router, private regS: RegUserService, private postS: PostService, private route: ActivatedRoute) {
+  constructor(private router: Router,
+              private regS: RegUserService,
+              private postS: PostService,
+              private route: ActivatedRoute,
+              private storage: AngularFireStorage) {
 
    }
 
    ngOnInit(){
 
+
  }
 
 ionViewDidEnter(){
+
   this.postS.loadAllPosts().subscribe( val =>{
     this.posts=val;
-    val.sort((a: Post, b: Post): number =>
-    {
-      if(a.date>b.date){
-          return;
-      }
-    });
+    console.log(this.posts[0].id);
+
+    console.log(val);
+    val.sort((a, b) => (a.date > b.date ? -1 : 1));
+    console.log(val);
     this.cUser=this.regS.cUser;
     console.log(this.cUser);
   }) ;
 
-
 }
 onPost(){
-  const newPost= new Post(this.content,this.cUser.name,this.date);
-  this.postS.addPost(newPost);
+  if(this.postUrl){
+  this.newPost  = new Post(this.content,this.cUser.name,this.date, this.postUrl);
+  }else{
+  this.newPost= new Post(this.content,this.cUser.name,this.date);
+  }
+  this.postS.addPost(this.newPost);
 }
 
+postFile(event){
+  const file=event.target.files[0];
+  const filePath= `Posts/${this.cUser.id}/postFile`;
+  const task= this.storage.upload(filePath,file);
+
+  this.downloadPost$=task.snapshotChanges().pipe(last(),concatMap(() => this.storage.ref(filePath)
+  .getDownloadURL()));
+
+  const postFile$=this.downloadPost$
+  .pipe(concatMap(async (url) => this.postUrl=url));
+  postFile$.subscribe(console.log);
+}
 }
 // .pipe(map(arr => arr.sort((a: Post , b: Post) => a.date>b.date)))

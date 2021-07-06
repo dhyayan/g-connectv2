@@ -3,10 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home.page';
 
 const routes: Routes = [
+{
+  path:'',
+  redirectTo:'about-us',
+  pathMatch:'full'
+},
   {
     path: '',
     component: HomePage,
     children:[
+      {
+        path:'about-us',
+       loadChildren:() => import('./about-us/about-us.module').then( m => m.AboutUsPageModule)
+
+      },
       {
         path: 'discussion',
         loadChildren: () => import('./discussion/discussion.module').then( m => m.DiscussionPageModule)
@@ -26,9 +36,14 @@ const routes: Routes = [
       {
         path: 'my-profile',
         loadChildren: () => import('./my-profile/my-profile.module').then( m => m.MyProfilePageModule)
-      }
+      },
+      {
+        path: 'about-us',
+        loadChildren: () => import('./about-us/about-us.module').then( m => m.AboutUsPageModule)
+      },
     ]
   },
+
 
 ];
 

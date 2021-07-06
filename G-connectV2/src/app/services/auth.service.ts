@@ -9,16 +9,16 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
-verified=false;
+verified=true;
 acess=false;
 error: string;
   loggedIn = false;
 
 currentUserEmail: string ;
   constructor(
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
-    public router: Router, // Inject Route Service
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public afAuth: AngularFireAuth,
+    public router: Router,
+    public ngZone: NgZone
   ) {
   }
 
@@ -45,17 +45,20 @@ currentUserEmail: string ;
 
       return;
     }else {
+      console.log('user  verified');
+
       this.ngZone.run(() => {
+
         this.router.navigate(['home']);
       });
     }
-    this.verified = true;
+
 
   }
 
 logOut(){
   this.afAuth.signOut().then(
-    () =>  this.router.navigate(['auth'])
+    () =>  this.router.navigate(['auth/login'])
 
   );
 

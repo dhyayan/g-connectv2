@@ -11,10 +11,6 @@ import { RegUserService } from './services/reg-user.service';
 })
 export class AppComponent implements OnInit{
 
-  showInput=false;
-  message: string;
-  newPassword='';
-  user: RegUser;
   loggedIn: boolean;
   constructor(public authS: AuthService, private  router: Router, private regS: RegUserService) {}
   ngOnInit()
@@ -31,28 +27,5 @@ export class AppComponent implements OnInit{
  );
 
   }
-onShowInput(){
-  this.showInput=!this.showInput;
 
-}
-onChangePassword(newPassword: string){
-  console.log(newPassword);
-  this.authS.afAuth.user.subscribe(val =>{
-    val.updatePassword(newPassword).then(() =>{
-    this.message='Your password has been sucessfully changed ';
-    }).catch(error => {
-      this.message=error;
-      console.log(error);
-    }
-      );
-  });
-  newPassword='';
-  this.showInput=false;
-}
-onLogout(){
-  this.authS.logOut();
-}
-removeError(){
-  this.message=null;
-}
 }

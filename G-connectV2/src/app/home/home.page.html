@@ -1,9 +1,70 @@
+<ion-menu side="start" menuId="first" contentId="menu1">
+    <ion-header>
+        <ion-toolbar color="success">
+            <ion-title> Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="home"></ion-icon>
+                <ion-button fill="clear" routerLink="/home/about-us">
+                    <ion-label color="dark">Home</ion-label>
+                </ion-button>
+            </ion-item>
+            <ion-item *ngIf="!acess">
+                <ion-icon name="person"></ion-icon>
+                <ion-button fill="clear" routerLink="/home/my-profile">
+                    <ion-label color="dark">My Profile</ion-label>
+                </ion-button>
+            </ion-item>
+            <ion-item *ngIf="acess">
+                <ion-button fill="clear" routerLink="home/moderate">
+                    <ion-label color="dark">Moderate</ion-label>
+                </ion-button>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="swap-horizontal"></ion-icon>
+                <ion-button fill="clear" (click)="onShowInput()">
+                    <ion-label color="dark">Change Password</ion-label>
+                </ion-button>
+            </ion-item>
+
+            <div *ngIf="showInput">
+                <ion-item>
+                    <ion-input type='password' [(ngModel)]="newPassword">
+                    </ion-input>
+                    <ion-button (click)="onChangePassword(newPassword)">confirm</ion-button>
+                </ion-item>
+            </div>
+
+            <div class="alert" *ngIf="message">
+                {{ message }}
+                <span class="closebtn" (click)="removeError()">&times;</span>
+            </div>
+
+
+            <ion-item>
+                <ion-icon name="exit"></ion-icon>
+                <ion-button fill="clear" (click)="onLogout()">
+                    <ion-text color="dark">LogOut</ion-text>
+                </ion-button>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+</ion-menu>
 <ion-toolbar contentId="first">
-    <ion-buttons slot="start" (click)="checkAcess()">
+    <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
 
     </ion-buttons>
-    <ion-title><strong>G-Connect</strong></ion-title>
+
+    <div class="logo">
+        <ion-title><strong>G-Connect</strong></ion-title>
+    </div>
+
 
 </ion-toolbar>
 
@@ -27,3 +88,4 @@
         </ion-tab-bar>
     </ion-tabs>
 </ion-content>
+<router-outlet id="menu1"></router-outlet>

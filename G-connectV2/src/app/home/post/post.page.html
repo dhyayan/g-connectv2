@@ -1,7 +1,15 @@
 <ion-header>
-    <h2 style="text-align: center;">Posts</h2>
+    <ion-title>
+        <h3 style="text-align: center;">Posts</h3>
+    </ion-title>
+
     <ion-textarea placeholder="Whats on your mind?" [(ngModel)]="content"></ion-textarea>
-    <ion-button fill="clear" style="text-align: right;" (click)="onPost()">Post</ion-button>
+
+    <ion-input class="file" type="file" (change)="postFile($event)">
+        <ion-icon name="image-outline"> </ion-icon>
+
+    </ion-input>
+    <ion-button size="small" fill="outline" style="text-align: right;" (click)="onPost()"><strong>Post</strong></ion-button>
 </ion-header>
 <ion-content>
     <div *ngFor="let post of posts">
@@ -10,10 +18,9 @@
                 <strong>{{post.username | titlecase}}</strong> {{post.date.toDate() | date:'medium'}}
             </ion-card-header>
             <ion-card-content>
-                {{post.content}}
+                {{post.content}}<br>
+                <img *ngIf="post.uploadedPost" [src]="post.uploadedPost">
             </ion-card-content>
         </ion-card>
     </div>
 </ion-content>
-
-<ion-button slot="end" expand="block" routerLink="../home">Back</ion-button>
