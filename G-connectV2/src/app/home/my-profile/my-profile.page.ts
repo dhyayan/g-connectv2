@@ -13,11 +13,13 @@ import { Format } from 'src/app/models/Format.model';
 })
 export class MyProfilePage implements OnInit {
 error: string;
+addStatus=false;
 newEmail='';
 show= false;
 cUser: RegUser;
 uploadCompletion$: Observable<number>;
   downloadUrl$: Observable<string>;
+  status='';
   img='../../../assets/empty-profile.png';
 constructor(private  storage: AngularFireStorage, private regS: RegUserService, private authS: AuthService) { }
  ngOnInit() {
@@ -70,5 +72,18 @@ changeEmail(email: string){
 
 removeError(){
   this.error=null;
+}
+onAddStatus(status: string){
+
+this.regS.updateUserDetail(this.cUser.id,{status});
+this.status='';
+this.addStatus=false;
+}
+showStatus(){
+  this.addStatus=true;
+}
+cancel(){
+  this.status='';
+  this.addStatus=false;
 }
 }

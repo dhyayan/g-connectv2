@@ -63,7 +63,18 @@
 
                 </ion-item>
 
+
             </div>
+<ion-item *ngIf="cUser.status"> {{ cUser.status }}</ion-item>
+            <button (click)="showStatus()">Add/change Current Status</button>
+            <div *ngIf="addStatus">
+              <ion-textarea [(ngModel)]="status">
+                <ion-button (click)="onAddStatus(status)">Add</ion-button>
+                <ion-button (click)="cancel()">Cancel</ion-button>
+              </ion-textarea>
+
+            </div>
+
         </ion-card-content>
 
     </ion-card>

@@ -6,6 +6,7 @@ export class RegUser{
   email: string;
   id?: string;
   uploadedImageUrl: string;
+  status?: string;
   constructor(){
   }
 }
