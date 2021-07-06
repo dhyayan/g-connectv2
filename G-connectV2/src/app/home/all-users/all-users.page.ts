@@ -19,12 +19,14 @@ ngOnInit(){
 
   if(this.authS.currentUserEmail){
     this.isLoading=true;
-    this.regUserS.loadAllUsers(this.authS.currentUserEmail).subscribe( users =>{
+    this.regUserS.loadAllUsers().subscribe( users =>{
       this.ourUsers=users;
       this.regUserS.allUsers=users;
-      this.viewUser=this.ourUsers;
       this.isLoading=false;
-      console.log(this.viewUser);
+      this.removeCurrentUser(this.authS.currentUserEmail);
+      this.onViewAll();
+
+
     });
 }
 
@@ -60,12 +62,15 @@ onViewTeacher(role: string){
 
 onViewAll(){
   this.viewUser=[];
-  for(const all of this.ourUsers){
-    this.viewUser.push(all);
-  }
+  this.viewUser=this.ourUsers;
+
 }
 
+removeCurrentUser(email: string){
 
+  this.ourUsers = this.ourUsers.filter(item => item.email !== email);
+
+}
 
 
 }
