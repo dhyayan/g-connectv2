@@ -20,8 +20,8 @@ allUsers: RegUser[];
 
   }
 
-  loadAllUsers(email: string): Observable <RegUser[]> {
-    return  this.db.collection('Users', ref => ref.where('email','!=',email)).snapshotChanges().
+  loadAllUsers(): Observable <RegUser[]> {
+    return  this.db.collection('Users', ref => ref.where('role','!=','Moderator')).snapshotChanges().
      pipe(map (snaps =>  convertSnaps<RegUser>(snaps)
        )
        );
