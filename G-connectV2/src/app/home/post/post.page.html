@@ -15,7 +15,7 @@
     <div *ngFor="let post of posts">
         <ion-card>
             <ion-card-header>
-                <strong>{{post.username | titlecase}}</strong> {{post.date.toDate() | date:'medium'}}
+                <strong>{{post.username | titlecase}}</strong> {{post.date.toDate() | date:'short'}}
             </ion-card-header>
             <ion-card-content>
                 {{post.content}}<br>

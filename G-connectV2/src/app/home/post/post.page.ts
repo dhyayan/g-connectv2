@@ -63,11 +63,12 @@ onPost(){
   this.newPost= new Post(this.content,this.cUser.name,this.date);
   }
   this.postS.addPost(this.newPost);
+  this.content='';
 }
 
 postFile(event){
   const file=event.target.files[0];
-  const filePath= `Posts/${this.cUser.id}/postFile`;
+  const filePath= `Posts/${this.posts[0].id}/postFile`;
   const task= this.storage.upload(filePath,file);
 
   this.downloadPost$=task.snapshotChanges().pipe(last(),concatMap(() => this.storage.ref(filePath)
@@ -78,4 +79,3 @@ postFile(event){
   postFile$.subscribe(console.log);
 }
 }
-// .pipe(map(arr => arr.sort((a: Post , b: Post) => a.date>b.date)))
