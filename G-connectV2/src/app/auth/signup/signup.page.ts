@@ -37,7 +37,7 @@ onSignUp(){
 
 
 onHome(){
-  this.router.navigate(['/home']);
+  this.router.navigate(['/home/login']);
 }
 removeErr(){
   this.error= null;
