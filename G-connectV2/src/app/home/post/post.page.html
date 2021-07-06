@@ -2,14 +2,17 @@
     <ion-title>
         <h3 style="text-align: center;">Posts</h3>
     </ion-title>
+    <div *ngIf="access">
+        <ion-textarea placeholder="Whats on your mind?" [(ngModel)]="content"></ion-textarea>
 
-    <ion-textarea placeholder="Whats on your mind?" [(ngModel)]="content"></ion-textarea>
+        <ion-input class="file" type="file" (change)="postFile($event)">
+            <ion-icon name="image-outline"> </ion-icon>
 
-    <ion-input class="file" type="file" (change)="postFile($event)">
-        <ion-icon name="image-outline"> </ion-icon>
+        </ion-input>
+        <ion-button size="small" fill="outline" style="text-align: right;" (click)="onPost()"><strong>Post</strong></ion-button>
 
-    </ion-input>
-    <ion-button size="small" fill="outline" style="text-align: right;" (click)="onPost()"><strong>Post</strong></ion-button>
+    </div>
+
 </ion-header>
 <ion-content>
     <div *ngFor="let post of posts">

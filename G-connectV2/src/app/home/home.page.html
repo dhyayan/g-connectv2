@@ -1,4 +1,4 @@
-<ion-menu side="start" menuId="first" contentId="menu1">
+<ion-menu auto-hide="true" side="start" menuId="first" contentId="menu1">
     <ion-header>
         <ion-toolbar color="success">
             <ion-title> Menu</ion-title>
@@ -8,20 +8,32 @@
         <ion-list>
             <ion-item>
                 <ion-icon name="home"></ion-icon>
-                <ion-button fill="clear" routerLink="/home/about-us">
+                <ion-button menuClose fill="clear" routerLink="/home/about-us" (click)="closeMenu()">
                     <ion-label color="dark">Home</ion-label>
                 </ion-button>
             </ion-item>
             <ion-item *ngIf="!acess">
                 <ion-icon name="person"></ion-icon>
-                <ion-button fill="clear" routerLink="/home/my-profile">
+                <ion-button fill="clear" routerLink="/home/my-profile" (click)="closeMenu()">
                     <ion-label color="dark">My Profile</ion-label>
                 </ion-button>
             </ion-item>
             <ion-item *ngIf="acess">
-                <ion-button fill="clear" routerLink="home/moderate">
+                <ion-icon name="glasses"></ion-icon>
+                <ion-button fill="clear" routerLink="/home/moderate" (click)="closeMenu()">
                     <ion-label color="dark">Moderate</ion-label>
                 </ion-button>
+            </ion-item>
+            <ion-item *ngIf="acess">
+                <ion-icon name="mail"></ion-icon>
+                <ion-button fill="clear" (click)="onUpdateEmail()">
+                    <ion-label color="dark">Change E-Mail</ion-label>
+                </ion-button>
+            </ion-item>
+            <ion-item *ngIf="updateEmail">
+                <ion-input type='email' [(ngModel)]="newEmail">
+                </ion-input>
+                <ion-button (click)="changeEmail(newEmail)" (click)="closeMenu()">confirm</ion-button>
             </ion-item>
 
             <ion-item>
@@ -31,13 +43,11 @@
                 </ion-button>
             </ion-item>
 
-            <div *ngIf="showInput">
-                <ion-item>
-                    <ion-input type='password' [(ngModel)]="newPassword">
-                    </ion-input>
-                    <ion-button (click)="onChangePassword(newPassword)">confirm</ion-button>
-                </ion-item>
-            </div>
+            <ion-item *ngIf="showInput">
+                <ion-input type='password' [(ngModel)]="newPassword">
+                </ion-input>
+                <ion-button (click)="onChangePassword(newPassword)" (click)="closeMenu()">confirm</ion-button>
+            </ion-item>
 
             <div class="alert" *ngIf="message">
                 {{ message }}
@@ -47,7 +57,7 @@
 
             <ion-item>
                 <ion-icon name="exit"></ion-icon>
-                <ion-button fill="clear" (click)="onLogout()">
+                <ion-button fill="clear" (click)="onLogout()" (click)="closeMenu()">
                     <ion-text color="dark">LogOut</ion-text>
                 </ion-button>
             </ion-item>

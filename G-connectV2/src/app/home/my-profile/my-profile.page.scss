@@ -76,6 +76,11 @@ ion-item {
     margin-bottom: 15px;
 }
 
+.wrap {
+    height: 50px;
+    --min-height: auto;
+}
+
 ion-label {
     text-align: center;
 }

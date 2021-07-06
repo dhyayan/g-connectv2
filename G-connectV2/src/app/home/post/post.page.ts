@@ -24,6 +24,7 @@ teacher= false;
 uploadedFile: Post;
 date= new Date();
 postUrl: string;
+access= false;
 downloadPost$: Observable<string>;
 newPost: Post;
 file='';
@@ -52,7 +53,10 @@ ionViewDidEnter(){
     val.sort((a, b) => (a.date > b.date ? -1 : 1));
     console.log(val);
     this.cUser=this.regS.cUser;
-    console.log(this.cUser);
+    if(this.cUser.role=== 'Moderator'){
+      this.access=true;
+    }
+
   }) ;
 
 }
