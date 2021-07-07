@@ -40,7 +40,7 @@ this.cUser=user[0];
     return user.length ===1? user[0]: undefined;
   }
 
-    ),first()
+    )
   );
   }
   getUserByRole(role: string): Observable<RegUser[]>{

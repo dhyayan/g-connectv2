@@ -87,6 +87,7 @@ changeEmail(email: string){
     val.updateEmail(email).then(() =>{
 
     this.message='Your email has been sucessfully changed ';
+    this.authS.logOut();
     }).catch(error => {
       this.message=error;
      return;
