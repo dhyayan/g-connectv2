@@ -43,7 +43,7 @@ export class ModerateService {
       this.db.doc(`Threads/${id}`).update(changes);
     }
 
-    verifyAnswers(answer: Format){
+    verifyAnswers(answer: Format,){
       const answerpath=answer.qid;
 
       this.db.collection(`Threads/${answerpath}/Answers`).add({

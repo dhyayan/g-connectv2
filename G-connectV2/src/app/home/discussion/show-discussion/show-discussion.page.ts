@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Format } from 'src/app/models/Format.model';
 import { ForumService } from 'src/app/services/forum.service';
+import { ModerateService } from 'src/app/services/moderate.service';
 import { RegUserService } from 'src/app/services/reg-user.service';
 
 @Component({
@@ -17,14 +18,14 @@ export class ShowDiscussionPage implements OnInit {
   answer = false ;
   answers: Format[];
   name: string;
-
+completeAns: Format;
   deleteAnswerId: string;
 
   myform=new FormGroup({
     newanswer: new FormControl('')
   });
   constructor(private forumS: ForumService,private route: ActivatedRoute,
-              private router: Router, private regS: RegUserService){}
+              private router: Router, private regS: RegUserService, private modS: ModerateService){}
 
 
 
@@ -51,11 +52,19 @@ export class ShowDiscussionPage implements OnInit {
 
 
   addAnswer(){
+if (this.regS.moderator){
+  this.completeAns=new Format(this.myform.value.newanswer,this.name,true,new Date());
+  this.completeAns.qid=this.currentForumId;
+  this.modS.verifyAnswers(this.completeAns);
 
-   const completeAns=new Format(this.myform.value.newanswer,this.name,new Date());
+}else{
+  this.completeAns=new Format(this.myform.value.newanswer,this.name,false,new Date());
+  this.forumS.onAddAswer(this.currentForumId,this.completeAns,this.currentQuestion.content);
+}
+
      this.answer=!this.answer;
    this.myform.reset();
-   this.forumS.onAddAswer(this.currentForumId,completeAns,this.currentQuestion.content);
+
 
   }
   clear(){

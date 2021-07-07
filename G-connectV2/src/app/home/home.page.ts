@@ -22,6 +22,7 @@ acess=false;
   constructor(private authS: AuthService, private regS: RegUserService, private menuCtrl: MenuController) {
   }
 ionViewWillEnter(){
+  console.log('entering home ');
   this.authS.afAuth.user.subscribe(val =>
     {
       if(val ){
@@ -29,9 +30,11 @@ ionViewWillEnter(){
         this.regS.getUserByEmail(val.email)
          .subscribe(user =>{
            this.user=user;
+           console.log(user);
            this.regS.cUser=user;
            if (user.role==='Moderator'){
              this.acess=true;
+             this.regS.moderator=true;
            }
            else{
              this.acess=false;

@@ -45,6 +45,7 @@ currentUserEmail: string ;
 
       return;
     }else {
+      this.error=null;
       console.log('user  verified');
 
       this.ngZone.run(() => {

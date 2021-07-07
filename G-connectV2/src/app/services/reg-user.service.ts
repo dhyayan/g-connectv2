@@ -15,7 +15,7 @@ import { RegUser } from '../models/reg-user.model';
 export class RegUserService{
 cUser: RegUser;
 allUsers: RegUser[];
-
+moderator=false;
   constructor(private http: HttpClient, private authS: AuthService, private db: AngularFirestore){
 
   }

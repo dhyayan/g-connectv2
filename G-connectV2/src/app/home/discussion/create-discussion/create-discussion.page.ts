@@ -15,7 +15,7 @@ export class CreateDiscussionPage implements OnInit {
 
   question: string;
   user: RegUser;
-
+ forum: Forum;
 
   constructor(private forumS: ForumService, private router: Router, private regS: RegUserService) {
       this.user=this.regS.cUser;
@@ -25,8 +25,13 @@ export class CreateDiscussionPage implements OnInit {
 
 
   createDiscussion(){
-const forum=new Forum(new Format( this.question,this.user.name,new Date()));
-    this.forumS.onCreateFourm(forum);
+    if (this.regS.moderator){
+       this.forum=new Forum(new Format( this.question,this.user.name,true,new Date()));
+    }else{
+      this.forum=new Forum(new Format( this.question,this.user.name,false,new Date()));
+
+    }
+    this.forumS.onCreateFourm(this.forum);
  this.router.navigate(['home/discussion']);
   }
 

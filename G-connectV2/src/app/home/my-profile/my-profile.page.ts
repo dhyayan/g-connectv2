@@ -23,15 +23,14 @@ uploadCompletion$: Observable<number>;
   img='../../../assets/empty-profile.png';
 constructor(private  storage: AngularFireStorage, private regS: RegUserService, private authS: AuthService) { }
  ngOnInit() {
-this.cUser=this.regS.cUser;
+  this.cUser=this.regS.cUser;
 
 
-if(this.cUser.uploadedImageUrl){
-  this.img=this.cUser.uploadedImageUrl;
-}
+  if(this.cUser.uploadedImageUrl){
+    this.img=this.cUser.uploadedImageUrl;
   }
 
-
+ }
 
 
     uploadFile(event){
@@ -47,7 +46,12 @@ if(this.cUser.uploadedImageUrl){
      const saveUrl$=this.downloadUrl$
       .pipe(concatMap (url=> this.regS.updateUserDetail(this.cUser.id,{uploadedImageUrl:url})
        ));
- saveUrl$.subscribe(console.log);
+ saveUrl$.subscribe(()=>{
+    this.cUser=this.regS.cUser;
+  if(this.cUser.uploadedImageUrl){
+    this.img=this.cUser.uploadedImageUrl;
+  }
+ });
 
       }
 
@@ -56,9 +60,13 @@ showInput(){
 }
 changeEmail(email: string){
   this.authS.afAuth.user.subscribe(val =>{
-    val.updateEmail(email).then(() =>{
+    val.updateEmail(email.toLowerCase()).then(() =>{
 
     this.error='Your email has been sucessfully changed ';
+    this.regS.updateUserDetail(this.cUser.id,{email}).subscribe(()=>{
+      this.cUser=this.regS.cUser;
+      this.authS.logOut();
+    });
     }).catch(error => {
       this.error=error;
      return;
@@ -66,7 +74,7 @@ changeEmail(email: string){
       );
   });
   this.show=!this.show;
-  this.regS.updateUserDetail(this.cUser.id,{email});
+
   this.newEmail='';
 }
 
@@ -75,9 +83,11 @@ removeError(){
 }
 onAddStatus(status: string){
 
-this.regS.updateUserDetail(this.cUser.id,{status});
+this.regS.updateUserDetail(this.cUser.id,{status}).subscribe(()=>this.cUser=this.regS.cUser);
 this.status='';
 this.addStatus=false;
+
+
 }
 showStatus(){
   this.addStatus=true;
