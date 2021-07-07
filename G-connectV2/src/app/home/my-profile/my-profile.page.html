@@ -62,17 +62,21 @@
 
             </div>
             <ion-item class="wrap" *ngIf="cUser.status">
-                <ion-icon size="large" name="reader-outline"></ion-icon>
-                {{ cUser.status }}
+                <ion-icon name="reader-outline"></ion-icon>
+                <ion-label>{{ cUser.status }}</ion-label>
+
             </ion-item>
             <ion-button size="small" (click)="showStatus()">Add/change Current Status</ion-button>
             <div *ngIf="addStatus">
-                <ion-textarea [(ngModel)]="status">
-                    <ion-button size="small" (click)="onAddStatus(status)">Add</ion-button>
-                    <ion-button size="small" (click)="cancel()">Cancel</ion-button>
-                </ion-textarea>
-
+                <ion-item class="wrap">
+                    <ion-textarea [(ngModel)]="status"> </ion-textarea>
+                </ion-item>
+                <ion-button size="small" (click)="onAddStatus(status)" routerLink="/home">Add</ion-button>
+                <ion-button size="small" (click)="cancel()">Cancel</ion-button>
             </div>
+
+
+
 
         </ion-card-content>
 
