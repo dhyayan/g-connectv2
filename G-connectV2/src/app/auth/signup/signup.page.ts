@@ -27,24 +27,24 @@ export class SignupPage implements OnInit {
 onSignUp(){
 
       this.authS.signUp(this.signupForm.value.email,this.signupForm.value.password).catch(error => this.error=error);
-      this.signupForm.reset();
+
       this.signupForm.removeControl('password');
       this.regUserS.onCreateUser(this.signupForm.value);
+      console.log(this.signupForm.value);
+      this.signupForm.reset();
+      // this.router.navigate(['/auth/login']);
 
     }
 
 
 
 
-onHome(){
-  this.router.navigate(['/home/login']);
-}
+
 removeErr(){
   this.error= null;
 }
 
 get email(){return this.signupForm.get('email');}
+
+
 }
-
-
-

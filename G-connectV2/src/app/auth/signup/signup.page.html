@@ -62,7 +62,7 @@
         </ion-item><br>
         <ion-row>
             <ion-col>
-                <ion-button expand="block" color="success" (click)="onSignUp()" shape="round" [disabled]="!signupForm.valid">Signup</ion-button>
+                <ion-button expand="block" color="success" (click)="onSignUp()" shape="round" routerLink="/auth/login" [disabled]="!signupForm.valid">Signup</ion-button>
             </ion-col>
         </ion-row>
         <br>

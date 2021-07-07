@@ -61,17 +61,7 @@ this.cUser=user[0];
 
 
 
- getUserByRoll(roll: string): Observable<RegUser[]>{
 
-  return this.db.collection('College',ref => ref.where('roll','==',roll)).snapshotChanges().
-  pipe(map (snaps =>  {
-    const user= convertSnaps<RegUser>(snaps);
-
-    return user.slice();
-  }
-    )
-  );
-  }
 filterUserByEmail(email: string ){
   for (const user of this.allUsers){
     if (user.email===email){
