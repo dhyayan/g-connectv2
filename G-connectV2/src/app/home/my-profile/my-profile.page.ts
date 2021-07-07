@@ -11,7 +11,7 @@ import { Format } from 'src/app/models/Format.model';
   templateUrl: './my-profile.page.html',
   styleUrls: ['./my-profile.page.scss'],
 })
-export class MyProfilePage implements OnInit {
+export class MyProfilePage{
 error: string;
 addStatus=false;
 newEmail='';
@@ -22,7 +22,7 @@ uploadCompletion$: Observable<number>;
   status='';
   img='../../../assets/empty-profile.png';
 constructor(private  storage: AngularFireStorage, private regS: RegUserService, private authS: AuthService) { }
- ngOnInit() {
+ ionViewWillEnter() {
   this.cUser=this.regS.cUser;
 
 
@@ -60,10 +60,11 @@ showInput(){
 }
 changeEmail(email: string){
   this.authS.afAuth.user.subscribe(val =>{
-    val.updateEmail(email.toLowerCase()).then(() =>{
+    val.updateEmail(email).then(() =>{
 
     this.error='Your email has been sucessfully changed ';
-    this.regS.updateUserDetail(this.cUser.id,{email}).subscribe(()=>{
+    const uemail=email.toLowerCase();
+    this.regS.updateUserDetail(this.cUser.id,{email:uemail}).subscribe(()=>{
       this.cUser=this.regS.cUser;
       this.authS.logOut();
     });

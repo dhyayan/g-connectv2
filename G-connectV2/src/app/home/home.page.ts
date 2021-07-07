@@ -23,6 +23,8 @@ acess=false;
   }
 ionViewWillEnter(){
   console.log('entering home ');
+
+
   this.authS.afAuth.user.subscribe(val =>
     {
       if(val ){
