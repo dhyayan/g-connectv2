@@ -13,7 +13,6 @@ export class SignupPage implements OnInit {
   error: string = null;
   signupForm = new FormGroup({
     name: new FormControl(''),
-    rollno: new FormControl(''),
     role: new FormControl(''),
     dept: new FormControl(''),
     email: new FormControl('',[Validators.required,Validators.email,Validators.pattern('[a-zA-Z0-9]+@gvpce.ac.in')]),
