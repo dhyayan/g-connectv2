@@ -10,15 +10,15 @@ import { RegUserService } from './services/reg-user.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit{
-
+  verified: boolean;
   loggedIn: boolean;
   constructor(public authS: AuthService, private  router: Router, private regS: RegUserService) {}
   ngOnInit()
   {
-
+this.authS.afAuth.user.subscribe(result => this.verified=result.emailVerified);
  this.authS.afAuth.authState.subscribe(val =>
   {
-    if (val && this.authS.verified){
+    if (val && this.verified){
       this.authS.loggedIn=true;
 
       this.router.navigate(['home']);

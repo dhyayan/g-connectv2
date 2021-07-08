@@ -19,7 +19,7 @@ export class PostPage implements OnInit {
 
   content: string;
   cUser: RegUser;
- posts: Post[];
+ posts: Post[]=[];
 teacher= false;
 uploadedFile: Post;
 date= new Date();
@@ -44,20 +44,23 @@ file='';
  }
 
 ionViewDidEnter(){
-
+  this.cUser=this.regS.cUser;
+  if(this.cUser.role=== 'Moderator'){
+    this.access=true;
+  }else{
+    this.access=false;
+  }
   this.postS.loadAllPosts().subscribe( val =>{
     this.posts=val;
-    console.log(this.posts[0].id);
 
     console.log(val);
     val.sort((a, b) => (a.date > b.date ? -1 : 1));
     console.log(val);
-    this.cUser=this.regS.cUser;
-    if(this.cUser.role=== 'Moderator'){
-      this.access=true;
+
+
     }
 
-  }) ;
+  ) ;
 
 }
 onPost(){
@@ -72,7 +75,7 @@ onPost(){
 
 postFile(event){
   const file=event.target.files[0];
-  const filePath= `Posts/${this.posts[0].id}/postFile`;
+  const filePath= `Posts/${this.posts.length}`;
   const task= this.storage.upload(filePath,file);
 
   this.downloadPost$=task.snapshotChanges().pipe(last(),concatMap(() => this.storage.ref(filePath)

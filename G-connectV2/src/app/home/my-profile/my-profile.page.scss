@@ -89,3 +89,31 @@ ion-label {
     --placeholder-color: #c2c3c4;
     --color: #c2c3c4;
 }
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+.alert {
+    text-align: center;
+    color: #ffffff;
+    background-color: #FF8080;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: .5em;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 12px;
+    width: 100%;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}

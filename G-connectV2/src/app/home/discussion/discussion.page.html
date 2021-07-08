@@ -1,21 +1,21 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title text-align="center">Discussion Forum </ion-title>
+        <ion-title text-align="center" color="dark">Discussion Forum </ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <ion-item>
-        Want to ask a new question ?
+        <strong>Want to ask a new question ?</strong>
         <ion-button shape="round" type="submit" color="success" (click)="goToNewDiscussion()" fill="clear" size="large">
             <ion-icon name="add-outline"></ion-icon>
         </ion-button>
     </ion-item><br><br>
     <ion-item>
-        <p style="text-align: center; font-size: medium;"> Exsting Discussion Threads </p>
+        <strong> Exsting Discussion Threads</strong>
     </ion-item>
     <ion-item *ngFor="let question of questions ; ">
         <!-- <a [routerLink]="['showdiscussion',question.id]"> {{ question.content }}</a> -->
-        <ion-label class="my-label" [routerLink]="['showdiscussion',question.id]" style="cursor: pointer;"><strong> {{ question.content }}</strong></ion-label>
+        <ion-text class="my-label" [routerLink]="['showdiscussion',question.id]" style="cursor: pointer;">{{ question.content }}</ion-text>
 
     </ion-item>
 
