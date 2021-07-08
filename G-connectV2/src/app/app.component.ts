@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RegUser } from './models/reg-user.model';
 import { AuthService } from './services/auth.service';
 import { RegUserService } from './services/reg-user.service';
 
@@ -15,7 +14,11 @@ export class AppComponent implements OnInit{
   constructor(public authS: AuthService, private  router: Router, private regS: RegUserService) {}
   ngOnInit()
   {
-this.authS.afAuth.user.subscribe(result => this.verified=result.emailVerified);
+this.authS.afAuth.user.subscribe(result => {
+  if (result){
+    this.verified=result.emailVerified;
+  }
+  });
  this.authS.afAuth.authState.subscribe(val =>
   {
     if (val && this.verified){

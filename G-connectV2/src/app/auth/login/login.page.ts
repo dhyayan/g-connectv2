@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage  {
 
   error: string = null;
   isLoading= false;
@@ -20,13 +20,14 @@ export class LoginPage implements OnInit {
               private router: Router,) { }
 
 
-  ngOnInit() {}
 
 
 onLogin(){
 this.authS.signIn(this.loginForm.value.email,this.loginForm.value.password).then(()=>{
   if (this.authS.error){
     this.error=this.authS.error;
+  }else{
+    this.error=null;
   }
 })
 
