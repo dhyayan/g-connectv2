@@ -1,7 +1,7 @@
 # g-connectv2
 
 
-To run the website pull from github 
+To run the website download from github 
 
 install node.js in your system
 
